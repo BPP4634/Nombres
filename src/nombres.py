@@ -1,8 +1,4 @@
 '''
-3. calcular_nombres: recibe una lista de tuplas de tipo FrecuenciaNombre y un género de tipo str, y
-devuelve un conjunto {str} con los nombres del género recibido como parámetro. El género puede
-ser ‘Hombre’, ‘Mujer’ o tener un valor None, en cuyo caso se incluyen en el conjunto todos los
-nombres. El valor por defecto del género es None.
 4. calcular_top_nombres_de_año: recibe una lista de tuplas de tipo FrecuenciaNombre, un año de
 tipo int, un número límite de tipo int y un género de tipo str, y devuelve una lista de tuplas
 (nombre, frecuencia) de tipo (str, int) con los nombres más frecuentes del año y el género dados,
@@ -70,3 +66,16 @@ def filtrar_por_genero(Nombres, genero):
         if nombre.genero == genero:
             nomgen.append(nombre)
     return nomgen
+
+def calcular_nombres(Nombres, genero):
+    namegen = {set}
+    if genero!=None:
+        Nombres = filtrar_por_genero(Nombres, genero)
+    for nombre in Nombres:
+        namegen.add(nombre[1])
+    return namegen
+
+'''3. calcular_nombres: recibe una lista de tuplas de tipo FrecuenciaNombre y un género de tipo str, y
+devuelve un conjunto {str} con los nombres del género recibido como parámetro. El género puede
+ser ‘Hombre’, ‘Mujer’ o tener un valor None, en cuyo caso se incluyen en el conjunto todos los
+nombres. El valor por defecto del género es None.'''
