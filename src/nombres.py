@@ -1,10 +1,4 @@
 '''
-4. calcular_top_nombres_de_año: recibe una lista de tuplas de tipo FrecuenciaNombre, un año de
-tipo int, un número límite de tipo int y un género de tipo str, y devuelve una lista de tuplas
-(nombre, frecuencia) de tipo (str, int) con los nombres más frecuentes del año y el género dados,
-ordenada de mayor a menor frecuencia, y con un máximo de límite nombres. El género puede ser
-‘Hombre’, ‘Mujer’ o tener un valor None, en cuyo caso se incluyen en la lista todos los nombres. El
-valor por defecto del límite es 10 y el del género es None.
 5. calcular_nombres_ambos_generos: recibe una lista de tuplas de tipo FrecuenciaNombre, y
 devuelve un conjunto {str} con los nombres que han sido utilizados en ambos géneros.
 6. calcular_nombres_compuestos: recibe una lista de tuplas de tipo FrecuenciaNombre y un género
@@ -67,7 +61,7 @@ def filtrar_por_genero(Nombres, genero):
             nomgen.append(nombre)
     return nomgen
 
-def calcular_nombres(Nombres, genero):
+def calcular_nombres(Nombres, genero=None):
     namegen = {set}
     if genero!=None:
         Nombres = filtrar_por_genero(Nombres, genero)
@@ -75,7 +69,18 @@ def calcular_nombres(Nombres, genero):
         namegen.add(nombre[1])
     return namegen
 
-'''3. calcular_nombres: recibe una lista de tuplas de tipo FrecuenciaNombre y un género de tipo str, y
-devuelve un conjunto {str} con los nombres del género recibido como parámetro. El género puede
-ser ‘Hombre’, ‘Mujer’ o tener un valor None, en cuyo caso se incluyen en el conjunto todos los
-nombres. El valor por defecto del género es None.'''
+def calcular_top_nombres_de_año(Nombres, anyo, lim=10, genero=None):
+    topnom = []
+    if genero!=None:
+        Nombres = filtrar_por_genero(Nombres, genero)
+    for nombre in Nombres:
+        if nombre.anyo == anyo:
+            topnom.append((nombre.nombre,nombre.frecuencia))
+    topnom = sorted(topnom, key=lambda nom : nom[1], reverse = True)
+    return topnom[:lim]
+'''4. calcular_top_nombres_de_año: recibe una lista de tuplas de tipo FrecuenciaNombre, un año de
+tipo int, un número límite de tipo int y un género de tipo str, y devuelve una lista de tuplas
+(nombre, frecuencia) de tipo (str, int) con los nombres más frecuentes del año y el género dados,
+ordenada de mayor a menor frecuencia, y con un máximo de límite nombres. El género puede ser
+‘Hombre’, ‘Mujer’ o tener un valor None, en cuyo caso se incluyen en la lista todos los nombres. El
+valor por defecto del límite es 10 y el del género es None.'''
