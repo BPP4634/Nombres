@@ -1,8 +1,4 @@
 '''
-6. calcular_nombres_compuestos: recibe una lista de tuplas de tipo FrecuenciaNombre y un género
-de tipo str, y devuelve un conjunto {str} con los nombres que contienen más de una palabra. El
-género puede ser ‘Hombre’, ‘Mujer’ o tener un valor None, en cuyo caso se incluyen en el conjunto
-todos los nombres. El valor por defecto del género es None.
 7. calcular_nombre_mas_frecuente_por_año: recibe una lista de tuplas de tipo FrecuenciaNombre y
 un género de tipo str, y devuelve una lista de tuplas (año, nombre, frecuencia) de tipo (int, str, int)
 ordenada por año con el nombre más frecuente de cada año. El género puede ser ‘Hombre’,
@@ -80,12 +76,19 @@ def calcular_top_nombres_de_año(Nombres, anyo, lim=10, genero=None):
 def calcular_nombres_ambos_generos(Nombres):
     genhset = set()
     genmset = set()
-    genh = set(filtrar_por_genero(Nombres, 'Hombre'))
+    genh = filtrar_por_genero(Nombres, 'Hombre')
     for gen in genh:
         genhset.add(gen[1])
-    genm = set(filtrar_por_genero(Nombres, 'Mujer'))
+    genm = filtrar_por_genero(Nombres, 'Mujer')
     for gen in genm:
         genmset.add(gen[1])
     return genhset & genmset
-'''5. calcular_nombres_ambos_generos: recibe una lista de tuplas de tipo FrecuenciaNombre, y
-devuelve un conjunto {str} con los nombres que han sido utilizados en ambos géneros.'''
+
+def calcular_nombres_compuestos(Nombres,genero=None):
+    calnomcom = set()
+    if genero!=None:
+        Nombres = filtrar_por_genero(Nombres,genero)
+    for nombre in Nombres:
+        if ' ' in nombre.nombre:
+            calnomcom.add(nombre.nombre)
+    return calnomcom
