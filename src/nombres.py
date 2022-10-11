@@ -1,6 +1,4 @@
 '''
-5. calcular_nombres_ambos_generos: recibe una lista de tuplas de tipo FrecuenciaNombre, y
-devuelve un conjunto {str} con los nombres que han sido utilizados en ambos géneros.
 6. calcular_nombres_compuestos: recibe una lista de tuplas de tipo FrecuenciaNombre y un género
 de tipo str, y devuelve un conjunto {str} con los nombres que contienen más de una palabra. El
 género puede ser ‘Hombre’, ‘Mujer’ o tener un valor None, en cuyo caso se incluyen en el conjunto
@@ -62,7 +60,7 @@ def filtrar_por_genero(Nombres, genero):
     return nomgen
 
 def calcular_nombres(Nombres, genero=None):
-    namegen = {set}
+    namegen = set()
     if genero!=None:
         Nombres = filtrar_por_genero(Nombres, genero)
     for nombre in Nombres:
@@ -78,3 +76,16 @@ def calcular_top_nombres_de_año(Nombres, anyo, lim=10, genero=None):
             topnom.append((nombre.nombre,nombre.frecuencia))
     topnom = sorted(topnom, key=lambda nom : nom[1], reverse = True)
     return topnom[:lim]
+
+def calcular_nombres_ambos_generos(Nombres):
+    genhset = set()
+    genmset = set()
+    genh = set(filtrar_por_genero(Nombres, 'Hombre'))
+    for gen in genh:
+        genhset.add(gen[1])
+    genm = set(filtrar_por_genero(Nombres, 'Mujer'))
+    for gen in genm:
+        genmset.add(gen[1])
+    return genhset & genmset
+'''5. calcular_nombres_ambos_generos: recibe una lista de tuplas de tipo FrecuenciaNombre, y
+devuelve un conjunto {str} con los nombres que han sido utilizados en ambos géneros.'''
