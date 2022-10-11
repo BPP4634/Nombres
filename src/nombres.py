@@ -78,9 +78,3 @@ def calcular_top_nombres_de_año(Nombres, anyo, lim=10, genero=None):
             topnom.append((nombre.nombre,nombre.frecuencia))
     topnom = sorted(topnom, key=lambda nom : nom[1], reverse = True)
     return topnom[:lim]
-'''4. calcular_top_nombres_de_año: recibe una lista de tuplas de tipo FrecuenciaNombre, un año de
-tipo int, un número límite de tipo int y un género de tipo str, y devuelve una lista de tuplas
-(nombre, frecuencia) de tipo (str, int) con los nombres más frecuentes del año y el género dados,
-ordenada de mayor a menor frecuencia, y con un máximo de límite nombres. El género puede ser
-‘Hombre’, ‘Mujer’ o tener un valor None, en cuyo caso se incluyen en la lista todos los nombres. El
-valor por defecto del límite es 10 y el del género es None.'''
