@@ -1,10 +1,4 @@
 '''
-7. calcular_nombre_mas_frecuente_por_año: recibe una lista de tuplas de tipo FrecuenciaNombre y
-un género de tipo str, y devuelve una lista de tuplas (año, nombre, frecuencia) de tipo (int, str, int)
-ordenada por año con el nombre más frecuente de cada año. El género puede ser ‘Hombre’,
-‘Mujer’ o tener un valor None, en cuyo caso se incluyen en la lista todos los nombres. El valor por
-defecto del género es None. Se calculará en primer lugar la lista de años y, posteriormente, se
-buscará el nombre más frecuente para cada año.
 8. calcular_frecuencia_por_año: recibe una lista de tuplas de tipo FrecuenciaNombre y un nombre de
 tipo str, y devuelve una lista de tuplas (año, frecuencia) de tipo (int, int) ordenada por año con la
 frecuencia del nombre en cada año. En el caso de que un nombre se use para hombres y mujeres,
@@ -92,3 +86,27 @@ def calcular_nombres_compuestos(Nombres,genero=None):
         if ' ' in nombre.nombre:
             calnomcom.add(nombre.nombre)
     return calnomcom
+
+def calcular_nombre_mas_frecuente_por_año(Nombres, genero=None):
+    nomfrec = []
+    nomfrectrue = []
+    listadepaso = []
+    if genero!=None:
+        Nombres = filtrar_por_genero(Nombres,genero)
+    for nombre in Nombres:
+        nomfrec.append((nombre.anyo,nombre.nombre,nombre.frecuencia))
+    nomfrec.sort()
+    n = nomfrec[0][0]
+    for nombre in nomfrec:
+        if nombre[0]==n:
+            listadepaso.append(nombre)
+        else:
+            listadepaso = sorted(listadepaso, key=lambda nom : nom[2], reverse = True)
+            nomfrectrue.append(listadepaso[0])
+            listadepaso.clear()
+            listadepaso.append(nombre)
+            n=n+1
+    listadepaso = sorted(listadepaso, key=lambda nom : nom[2], reverse = True)
+    nomfrectrue.append(listadepaso[0])
+    listadepaso.clear()
+    return nomfrectrue
