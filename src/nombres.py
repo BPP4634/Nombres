@@ -1,8 +1,4 @@
 '''
-8. calcular_frecuencia_por_año: recibe una lista de tuplas de tipo FrecuenciaNombre y un nombre de
-tipo str, y devuelve una lista de tuplas (año, frecuencia) de tipo (int, int) ordenada por año con la
-frecuencia del nombre en cada año. En el caso de que un nombre se use para hombres y mujeres,
-se sumarán ambas frecuencias.
 9. mostrar_evolucion_por_año: recibe una lista de tuplas de tipo FrecuenciaNombre y un nombre de
 tipo str, y genera un gráfico con la evolución de la frecuencia del nombre a lo largo de los años
 (Figura 2). Se usarán las siguientes instrucciones para generar la gráfica:
@@ -110,3 +106,20 @@ def calcular_nombre_mas_frecuente_por_año(Nombres, genero=None):
     nomfrectrue.append(listadepaso[0])
     listadepaso.clear()
     return nomfrectrue
+
+def calcular_frecuencia_por_año(Nombres,nombredado):
+    Nombres.sort()
+    n=Nombres[0][0]
+    listadepaso = []
+    frecporan = []
+    for nombre in Nombres:
+        if nombre.anyo == n and nombre.nombre == nombredado:
+            listadepaso.append(nombre.frecuencia)
+        elif nombre.nombre==nombredado:
+            frecporan.append((n,sum(listadepaso)))
+            listadepaso.clear()
+            listadepaso.append(nombre.frecuencia)
+            n=nombre.anyo
+    frecporan.append((n,sum(listadepaso)))
+    listadepaso.clear()
+    return frecporan
