@@ -1,9 +1,4 @@
-'''10. calcular_frecuencia_acumulada: recibe una lista de tuplas de tipo FrecuenciaNombre y un nombre
-de tipo str, y devuelve la frecuencia acumulada del nombre en todos los años.
-11. calcular_frecuencias_por_nombre: recibe una lista de tuplas de tipo FrecuenciaNombre, y
-devuelve un diccionario {str: int} que relaciona cada nombre con la frecuencia acumulada del
-nombre.
-12. mostrar_frecuencias_nombres: recibe una lista de tuplas de tipo FrecuenciaNombre y un número
+'''12. mostrar_frecuencias_nombres: recibe una lista de tuplas de tipo FrecuenciaNombre y un número
 límite de tipo int, y genera un diagrama de barras con las frecuencias de los nombres más
 populares, en orden decreciente de popularidad y con un máximo de límite nombres (Figura 3). El
 valor por defecto del límite es 10. Se usarán las siguientes instrucciones para generar la gráfica:
@@ -130,3 +125,9 @@ def calcular_frecuencia_acumulada(Nombres,nombre):
     for nom in calcular_frecuencia_por_año(Nombres,nombre):
         frecuencia.append(nom[1])
     return sum(frecuencia)
+
+def calcular_frecuencias_por_nombre(Nombres):
+    frecnom = {}
+    for nombre in Nombres:
+        frecnom[nombre.nombre] = calcular_frecuencia_acumulada(Nombres,nombre.nombre)
+    return frecnom
