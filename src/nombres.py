@@ -1,12 +1,3 @@
-'''12. mostrar_frecuencias_nombres: recibe una lista de tuplas de tipo FrecuenciaNombre y un número
-límite de tipo int, y genera un diagrama de barras con las frecuencias de los nombres más
-populares, en orden decreciente de popularidad y con un máximo de límite nombres (Figura 3). El
-valor por defecto del límite es 10. Se usarán las siguientes instrucciones para generar la gráfica:
-plt.bar(nombres, frecuencias)
-plt.xticks(rotation=80)
-plt.title("Frecuencia de los {} nombres más comunes".format(limite))
-plt.show()'''
-
 import csv
 from matplotlib import pyplot as plt
 from collections import namedtuple
@@ -131,3 +122,21 @@ def calcular_frecuencias_por_nombre(Nombres):
     for nombre in Nombres:
         frecnom[nombre.nombre] = calcular_frecuencia_acumulada(Nombres,nombre.nombre)
     return frecnom
+
+def mostrar_frecuencias_nombres(Nombres,limite=10):
+    nombres = []
+    frecuencias= []
+    frecnom = calcular_frecuencias_por_nombre(Nombres)
+    frecnom = sorted(list(zip(frecnom.keys(), frecnom.values())), key=lambda num : num[1], reverse = True)
+    n=0
+    for nom in frecnom:
+        if n < limite:
+            nombres.append(nom[0])
+            frecuencias.append(nom[1])
+            n=n+1
+        else:
+            break
+    plt.bar(nombres, frecuencias)
+    plt.xticks(rotation=80)
+    plt.title("Frecuencia de los {} nombres más comunes".format(limite))
+    plt.show()
