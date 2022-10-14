@@ -124,3 +124,9 @@ def mostrar_evolucion_por_año(Nombres,nombre):
     plt.plot(años, frecuencias)
     plt.title("Evolución del nombre '{}'".format(nombre))
     plt.show()
+
+def calcular_frecuencia_acumulada(Nombres,nombre):
+    frecuencia = []
+    for nom in calcular_frecuencia_por_año(Nombres,nombre):
+        frecuencia.append(nom[1])
+    return sum(frecuencia)
