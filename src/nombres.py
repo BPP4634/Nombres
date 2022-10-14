@@ -1,13 +1,4 @@
-'''
-9. mostrar_evolucion_por_año: recibe una lista de tuplas de tipo FrecuenciaNombre y un nombre de
-tipo str, y genera un gráfico con la evolución de la frecuencia del nombre a lo largo de los años
-(Figura 2). Se usarán las siguientes instrucciones para generar la gráfica:
-plt.plot(años, frecuencias)
-plt.title("Evolución del nombre '{}'".format(nombre))
-plt.show()
-Ejercicio: Nombres 3
-Donde años y frecuencias se extraen del resultado de la función calcular_frecuencia_por_año.
-10. calcular_frecuencia_acumulada: recibe una lista de tuplas de tipo FrecuenciaNombre y un nombre
+'''10. calcular_frecuencia_acumulada: recibe una lista de tuplas de tipo FrecuenciaNombre y un nombre
 de tipo str, y devuelve la frecuencia acumulada del nombre en todos los años.
 11. calcular_frecuencias_por_nombre: recibe una lista de tuplas de tipo FrecuenciaNombre, y
 devuelve un diccionario {str: int} que relaciona cada nombre con la frecuencia acumulada del
@@ -123,3 +114,13 @@ def calcular_frecuencia_por_año(Nombres,nombredado):
     frecporan.append((n,sum(listadepaso)))
     listadepaso.clear()
     return frecporan
+
+def mostrar_evolucion_por_año(Nombres,nombre):
+    años = []
+    frecuencias = []
+    for año, frecuencia in calcular_frecuencia_por_año(Nombres,nombre):
+        años.append(año)
+        frecuencias.append(frecuencia)
+    plt.plot(años, frecuencias)
+    plt.title("Evolución del nombre '{}'".format(nombre))
+    plt.show()
