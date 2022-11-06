@@ -10,7 +10,7 @@ def main():
     print(calcular_nombres_compuestos(Nombres))
     print(calcular_nombre_mas_frecuente_por_año(Nombres, 'HOMBRE'))
     print(calcular_frecuencia_por_año(Nombres,'JORGE'))
-    mostrar_evolucion_por_año(Nombres,"IKER")
+    mostrar_evolucion_por_año(Nombres,"HECTOR")
     print(calcular_frecuencia_acumulada(Nombres,"ABRIL"))
     print(calcular_frecuencias_por_nombre(Nombres))
     mostrar_frecuencias_nombres(Nombres,20)
